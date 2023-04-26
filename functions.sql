@@ -20,8 +20,12 @@ insert into sample_table values
 ;
 
 
+select 
+*
+from sample_table;
+
 -- creating a function to get count of days between given dates
-create function get_count_of_days(start_date date, end_date date)  
+create or replace function get_count_of_days(start_date date, end_date date)  
 returns int  
 language plpgsql  
 as  
@@ -46,3 +50,33 @@ select
 *
 from sample_table 
 where integer_col=get_count_of_days('2021-01-05', '2021-01-08');
+
+
+
+-- creating a function to return table
+create or replace function get_sample_table_id(id int)  
+returns table (
+	integer_col_2 integer,
+	date_col_2 date
+)
+language plpgsql  
+as  
+$$  
+begin  
+   return query 
+   select
+   		*
+   from sample_table  
+   where integer_col>id;
+end;  
+$$;  
+
+-- using the returned table from a function in select statement
+select * from get_sample_table_id(2);
+
+-- using the return table in a join
+select 
+a.*,
+b.*
+from sample_table a
+left join get_sample_table_id(2) b on a.integer_col = b.integer_col_2

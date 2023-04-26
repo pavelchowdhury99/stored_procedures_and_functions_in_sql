@@ -1,4 +1,4 @@
-# Store procedures and Function in SQL
+# Stored procedures and Function in SQL
 
 ## Analogy
 A **function** can be compared to a function in any programing language, it can take inputs but only return singular results or single tables.
@@ -13,6 +13,7 @@ A **function** can be compared to a function in any programing language, it can 
 4. You cannot manage transactions inside a function.
 5. You cannot call stored procedures from a function
 6. You can call a function using a select statement.
+7. You can call a function within a function definition or use.
 
 
 ## Stored Procedures
@@ -22,10 +23,4 @@ A **function** can be compared to a function in any programing language, it can 
 4. You can manage transactions inside a procedure.
 5. You can call a function from a stored procedure.
 6. You cannot call a procedure using select statements.
-
-
-## Usage
-1. Functions
-
-2. Stored Procedures
 
